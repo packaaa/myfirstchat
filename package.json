@@ -15,5 +15,14 @@
     "start": "node server.js"
   },
   "author": "",
-  "license": ""
+  "license": "ISC",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/packaaa/myfirstchat.git"
+  },
+  "bugs": {
+    "url": "https://github.com/packaaa/myfirstchat/issues"
+  },
+  "homepage": "https://github.com/packaaa/myfirstchat#readme"
 }
