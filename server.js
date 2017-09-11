@@ -5,7 +5,9 @@ var  express=require('express'),
      io=require('socket.io').listen(server),
      users=[];
      app.use('/',express.static(__dirname+'/www'));
-     server.listen(8080,()=>{console.log('running....')});
+     server.listen(8080,function(){
+      console.log('running...')
+     });
      //socket部分
      //登录
      io.on('connection',(socket)=>{
