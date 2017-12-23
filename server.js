@@ -3,7 +3,7 @@ var  express=require('express'),
       app=express(),
       server=require('http').createServer(app),
      io=require('socket.io').listen(server);
-     if (!user){
+     if (!users){
       var users=[]
     }
      app.use('/',express.static(__dirname+'/www'));
