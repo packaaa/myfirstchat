@@ -1,20 +1,49 @@
 /*
 * @Author: Administrator
 * @Date:   2017-08-30 17:53:51
-* @Last Modified by:   Administrator
-* @Last Modified time: 2017-08-30 17:54:21
+* @Last Modified by:   YangMingpo
+* @Last Modified time: 2017-12-22 14:20:16
 */
  html, body {
     margin: 0;
     background-color: #efefef;
     font-family: sans-serif;
 }
+*{
+    margin: 0;padding:0;
+}
+input{
+    border-width:0!important;
+}
 .wrapper {
     width: 500px;
     height: 640px;
     padding: 5px;
     margin: 0 auto;
-    background-color: #ddd;
+    background-color: #73a3e6;
+}
+#nicknameInput{
+    height: 30px;
+    width: 300px;
+    border-radius: 5px;
+    box-shadow: none;
+    padding-left: 10px;
+    caret-color:#73a3e6;
+    border-width:0;
+
+
+}
+#info{
+    padding: 10px;
+}
+#loginBtn{
+    width: 60px;
+    height: 30px;
+    background: #0a73f7;
+    border-radius: 4px;
+    border-width: 0;
+    color: #fff;
+
 }
 #loginWrapper {
     position: fixed;
@@ -22,7 +51,7 @@
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: rgba(5, 5, 5, .6);
+    background-color: #73a3e6;
     text-align: center;
     color: #fff;
     display: block;
@@ -59,10 +88,14 @@
 .items {
     height: 30px;
 }
+/*.items input{
+    border-radius: 5px;
+}*/
 #colorStyle {
     width: 50px;
     border: none;
     padding: 0;
+    border-radius: 5px;
 }
 /*custom the file input*/
 
@@ -75,19 +108,25 @@
     left: 0;
     opacity: 0;
     overflow: hidden;
+    border-radius: 5px;
 }
+
 /*end custom file input*/
 
 #messageInput {
-    width: 440px;
-    max-width: 440px;
-    height: 90px;
-    max-height: 90px;
+    width: 460px;
+    max-width: 460px;
+    height: 60px;
+    max-height: 60px;
+    padding: 10px;
 }
 #sendBtn {
     width: 50px;
-    height: 96px;
+    height: 30px;
     float: right;
+    border-radius: 5px;
+    background: #0a73f7;
+    color: #fff;
 }
 #emojiWrapper {
     display: none;
@@ -96,6 +135,7 @@
     position: absolute;
     background-color: #aaa;
     box-shadow: 0 0 10px #555;
+    border-radius: 50%;
 }
 #emojiWrapper img {
     margin: 2px;

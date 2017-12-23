@@ -1,28 +1,9 @@
 {
-  "name": "hichat",
-  "description": "mychat web application",
-  "version": "0.4.0",
-  "main": "server.js",
+  "name": "",
+  "version": "",
   "dependencies": {
-    "express": "3.4.x",
-    "socket.io": "0.9.x"
-  },
-  "engines": {
-    "node": "4.0.x",
-    "npm": "1.2.x"
-  },
-  "scripts": {
-    "start": "node server.js"
-  },
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/packaaa/myfirstchat.git"
-  },
-  "bugs": {
-    "url": "https://github.com/packaaa/myfirstchat/issues"
-  },
-  "homepage": "https://github.com/packaaa/myfirstchat#readme"
+    "express": "^4.15.4",
+    "http": "0.0.0",
+    "socket.io": "^2.0.3"
+  }
 }

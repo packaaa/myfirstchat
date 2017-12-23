@@ -17,7 +17,7 @@ this.socket=io.connect();
 //监听socket的connect事件
 this.socket.on('connect',function(){
    //连接到服务器后，显示昵称输入框
-            document.getElementById('info').textContent = 'get yourself a nickname :)';
+            document.getElementById('info').textContent = '请输入用户名:)';
             document.getElementById('nickWrapper').style.display = 'block';
             document.getElementById('nicknameInput').focus();
 })
@@ -56,6 +56,7 @@ document.getElementById('loginBtn').addEventListener('click', function() {
 //登录失败
 this.socket.on('nickExisted', function() {
      document.getElementById('info').textContent = '!昵称已占用'; //显示昵称被占用的提示
+     return false;
  });
 //登录成功
 this.socket.on('loginSuccess', function() {
@@ -64,37 +65,35 @@ this.socket.on('loginSuccess', function() {
      document.getElementById('messageInput').focus();//让消息输入框获得焦点
  });
 this.socket.on('system', function(nickName, userCount, type) {
+    if (!nickName) {
+        return false;
+    };
      //判断用户是连接还是离开以显示不同的信息
-     var msg = nickName + (type == 'login' ? ' joined' : ' left');
+     var msg = nickName + (type == 'login' ? '加入聊天' : '掉线了');
      var p = document.createElement('p');
      p.textContent = msg;
+     that._displayNewMsg('system ', msg, 'red');
      document.getElementById('historyMsg').appendChild(p);
      //将在线人数显示到页面顶部
-     document.getElementById('status').textContent = userCount + (userCount > 1 ? ' users' : ' user') + ' online';
+     document.getElementById('status').textContent = userCount +' 人在线';
  });
-
-//
-this.socket.on('system', function(nickName, userCount, type) {
-    var msg = nickName + (type == 'login' ? ' joined' : ' left');
-    //指定系统消息显示为红色
-    that._displayNewMsg('system ', msg, 'red');
-    document.getElementById('status').textContent = userCount + (userCount > 1 ? ' users' : ' user') + ' online';
-});
 //发送消息
 document.getElementById('sendBtn').addEventListener('click', function() {
     var messageInput = document.getElementById('messageInput'),
-        msg = messageInput.value;
+        msg = messageInput.value,
          //获取颜色值
         color = document.getElementById('colorStyle').value;
     messageInput.value = '';
     messageInput.focus();
     if (msg.trim().length != 0) {
+        // alert(color)
         that.socket.emit('postMsg', msg,color); //把消息发送到服务器
         that._displayNewMsg('me', msg,color); //把自己的消息显示到自己的窗口中
     };
 }, false);
 //显示到聊天界面中
 this.socket.on('newMsg', function(user, msg,color) {
+    // alert(color)
     that._displayNewMsg(user, msg,color);
 });
 //发送图片
@@ -144,12 +143,16 @@ document.getElementById('sendImage').addEventListener('change', function() {
         messageInput.value = messageInput.value + '[emoji:' + target.title + ']';
     };
 }, false);
+ document.querySelector("#clearBtn").addEventListener('click', function(){
+    document.querySelector("#messageInput").value="";
+ }, false)
 },
 _displayNewMsg: function(user, msg, color) {
         var container = document.getElementById('historyMsg'),
             msgToDisplay = document.createElement('p'),
             date = new Date().toTimeString().substr(0, 8);
             //将消息中的表情转换为图片
+            // alert(color)
          msg = this._showEmoji(msg);
         msgToDisplay.style.color = color || '#000';
         msgToDisplay.innerHTML = user + '<span class="timespan">(' + date + '): </span>' + msg;
